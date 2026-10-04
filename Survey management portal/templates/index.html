@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Survey Management Portal</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <h2>Survey Management Portal</h2>
+
+    <a href="/admin">Admin</a>
+
+</div>
+
+
+<div class="container">
+
+    <h1>Welcome to Survey Management Portal</h1>
+
+    <p>
+        Participate in surveys and share your valuable feedback.
+    </p>
+
+
+    <h2>Available Surveys</h2>
+
+
+    {% for survey in surveys %}
+
+    <div class="survey-card">
+
+        <h3>{{ survey["title"] }}</h3>
+
+        <p>
+            {{ survey["description"] }}
+        </p>
+
+        <a
+            href="/survey/{{ survey['id'] }}"
+            class="btn"
+        >
+            Take Survey
+        </a>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+</body>
+
+</html>

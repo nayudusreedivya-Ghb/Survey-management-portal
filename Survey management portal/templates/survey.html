@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Take Survey</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>{{ survey["title"] }}</h1>
+
+    <p>{{ survey["description"] }}</p>
+
+
+    <form method="POST">
+
+        <label>Name</label>
+
+        <input
+            type="text"
+            name="name"
+            placeholder="Enter your name"
+            required
+        >
+
+
+        <label>Email</label>
+
+        <input
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+        >
+
+
+        {% for question in questions %}
+
+        <div class="question">
+
+            <h3>
+                {{ loop.index }}. {{ question["question"] }}
+            </h3>
+
+
+            <label>
+                <input
+                    type="radio"
+                    name="question_{{ question['id'] }}"
+                    value="Excellent"
+                    required
+                >
+                Excellent
+            </label>
+
+
+            <label>
+                <input
+                    type="radio"
+                    name="question_{{ question['id'] }}"
+                    value="Good"
+                >
+                Good
+            </label>
+
+
+            <label>
+                <input
+                    type="radio"
+                    name="question_{{ question['id'] }}"
+                    value="Average"
+                >
+                Average
+            </label>
+
+
+            <label>
+                <input
+                    type="radio"
+                    name="question_{{ question['id'] }}"
+                    value="Poor"
+                >
+                Poor
+            </label>
+
+        </div>
+
+        {% endfor %}
+
+
+        <button type="submit">
+            Submit Survey
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>
